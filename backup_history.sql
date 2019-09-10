@@ -1,16 +1,18 @@
 USE [msdb]
-select	database_name,
-		recovery_model,
-		case	when type = 'D' then 'Full'
-				when type = 'I' then 'Differential'
-				when type = 'L' then 'Log'
-		end 'backup_type',
-		backup_start_date,
-		backup_finish_date,
-		user_name,
-		name 'backup_application',
+SELECT	
+	[database_name],
+	[recovery_model],
+	CASE	
+		WHEN type = 'D' THEN 'Full'
+		WHEN type = 'I' THEN 'Differential'
+		WHEN type = 'L' THEN 'Log'
+		END AS 'BackupType',
+		[backup_start_date],
+		[backup_finish_date],
+		[user_name],
+		[name] AS 'backup_application',
 		backup_size/1024/1024/1024,
 		compressed_backup_size/1024/1024/1024
-from backupset as b
-where b.database_name = 'QoreVerify' -- remove this line to query all db history
-order by b.backup_start_date desc
+FROM [backupset] AS b
+WHERE b.[database_name] = 'QoreReporting' -- remove this line to query all db history
+ORDER BY b.[backup_start_date] DESC;
