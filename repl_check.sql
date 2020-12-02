@@ -17,7 +17,7 @@ mdh.comments [Comments],
 'select * from distribution.dbo.msrepl_errors (nolock) where id = ' + CAST(mdh.error_id AS VARCHAR(8)) [Query More Info],
 mdh.xact_seqno [SEQ_NO],
 (CASE  
-    WHEN mda.subscription_type =  '0' THEN 'Push' a
+    WHEN mda.subscription_type =  '0' THEN 'Push'
     WHEN mda.subscription_type =  '1' THEN 'Pull' 
     WHEN mda.subscription_type =  '2' THEN 'Anonymous' 
     ELSE CAST(mda.subscription_type AS VARCHAR)
