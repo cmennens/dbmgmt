@@ -14,5 +14,4 @@ SELECT
 		backup_size/1024/1024/1024,
 		compressed_backup_size/1024/1024/1024
 FROM [backupset] AS b
-WHERE b.[database_name] = 'QoreReporting' -- remove this line to query all db history
 ORDER BY b.[backup_start_date] DESC;
